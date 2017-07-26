@@ -1,0 +1,24 @@
+# Add TeX-Live to PATH
+export PATH="/usr/local/texlive/2016/bin/x86_64-linux:$PATH"
+
+# To make Anaconda's Python default, uncomment the following line:
+#export PATH=/home/toiwat/anaconda3/bin:$PATH
+
+# Virtualenv support
+function virtual_env_prompt () {
+    REPLY=${VIRTUAL_ENV+(${VIRTUAL_ENV:t}) }
+}
+grml_theme_add_token  virtual-env -f virtual_env_prompt '%F{magenta}' '%f'
+zstyle ':prompt:grml:left:setup' items rc virtual-env change-root user at host path vcs percent
+
+# Anaconda Prompt
+function conda_prompt () {
+	REPLY=${CONDA_DEFAULT_ENV+(${CONDA_PREFIX:t}/${CONDA_DEFAULT_ENV:t}) }
+}
+grml_theme_add_token conda -f conda_prompt '%F{magenta}' '%f'
+zstyle ':prompt:grml:left:setup' items rc conda change-root user at host path vcs percent
+
+
+
+
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
